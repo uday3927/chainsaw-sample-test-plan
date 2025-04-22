@@ -1,0 +1,13 @@
+apiVersion: chainsaw.kyverno.io/v1alpha1
+kind: Test
+metadata:
+  name: deployment-check
+spec:
+  steps:
+  - try:
+    - apply:
+        file: manifests/deployment.yaml
+    - assert:
+        file: manifests/assert-deployment.yaml
+  manifests:
+    dir: manifests
